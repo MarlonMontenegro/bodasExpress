@@ -1,0 +1,194 @@
+---
+const eyebrow = "TESTIMONIOS"; // opcional (puedes dejarlo vacío)
+const title = ""; // si querés un título arriba (opcional)
+
+const testimonials = [
+  {
+    quote: "“La ceremonia fue hermosa y súper rápida. Todo estaba listo, decorado y sin estrés.”",
+    body:
+      "Nos guiaron en cada paso. La coordinación fue impecable y el lugar se veía precioso. Recomendadísimo si querés algo práctico y bonito.",
+    author: "Karen & Luis",
+  },
+  {
+    quote: "“Nos atendieron por WhatsApp y en minutos ya teníamos todo claro. Excelente servicio.”",
+    body:
+      "La comunicación fue rápida, el proceso fue claro y el día de la boda todo fluyó perfecto. Gracias por hacerlo tan fácil.",
+    author: "Sofía & Daniel",
+  },
+  {
+    quote: "“Local decorado, abogado incluido y atención amable. Justo lo que necesitábamos.”",
+    body:
+      "Llegamos nerviosos y salimos felices. Se nota la experiencia: todo bien organizado y con un ambiente lindo.",
+    author: "María & José",
+  },
+];
+
+// autoplay opcional
+const autoplay = false;
+const autoplayMs = 6000;
+---
+
+<section id="testimonios" class="py-16 md:py-24">
+  <div class="w-full px-4 md:px-8">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <div class="relative">
+
+        {/* contenido centrado */}
+        <div class="mx-auto max-w-4xl text-center">
+          {eyebrow && (
+            <p class="text-[10px] md:text-[11px] tracking-[0.32em] uppercase text-slate-500">
+              {eyebrow}
+            </p>
+          )}
+
+          {title && (
+            <h2 class="mt-3 font-serif text-3xl md:text-5xl text-slate-900">
+              {title}
+            </h2>
+          )}
+
+          {/* Quote */}
+          <h3
+            id="tQuote"
+            class="mt-10 font-serif text-3xl md:text-5xl leading-[1.12] text-slate-900"
+          >
+            {testimonials[0].quote}
+          </h3>
+
+          {/* Body */}
+          <p id="tBody" class="mt-8 text-sm md:text-base leading-relaxed text-slate-600">
+            {testimonials[0].body}
+          </p>
+
+          {/* Author */}
+          <p id="tAuthor" class="mt-6 text-sm font-medium text-slate-700">
+            {testimonials[0].author}
+          </p>
+        </div>
+
+        {/* Flechas (como tu screenshot) */}
+        <button
+          id="tPrev"
+          type="button"
+          aria-label="Anterior testimonio"
+          class="absolute left-0 md:left-10 top-1/2 -translate-y-1/2
+                 h-10 w-10 rounded-full
+                 hover:bg-slate-100 transition
+                 inline-flex items-center justify-center"
+        >
+          {/* Tabler arrow narrow left */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-5 w-5 text-slate-700">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l14 0" />
+            <path d="M5 12l4 4" />
+            <path d="M5 12l4 -4" />
+          </svg>
+        </button>
+
+        <button
+          id="tNext"
+          type="button"
+          aria-label="Siguiente testimonio"
+          class="absolute right-0 md:right-10 top-1/2 -translate-y-1/2
+                 h-10 w-10 rounded-full
+                 hover:bg-slate-100 transition
+                 inline-flex items-center justify-center"
+        >
+          {/* Tabler arrow narrow right */}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-5 w-5 text-slate-700">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l14 0" />
+            <path d="M15 16l4 -4" />
+            <path d="M15 8l4 4" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ testimonials, autoplay, autoplayMs }}>
+  function initTestimonials() {
+    const quoteEl = document.getElementById("tQuote");
+    const bodyEl = document.getElementById("tBody");
+    const authorEl = document.getElementById("tAuthor");
+    const prevBtn = document.getElementById("tPrev");
+    const nextBtn = document.getElementById("tNext");
+
+    if (!quoteEl || !bodyEl || !authorEl || !prevBtn || !nextBtn) return;
+
+    let i = 0;
+    let timer = null;
+
+    const render = (idx) => {
+      const t = testimonials[idx];
+      // micro fade para que se sienta suave
+      quoteEl.classList.add("opacity-0");
+      bodyEl.classList.add("opacity-0");
+      authorEl.classList.add("opacity-0");
+
+      setTimeout(() => {
+        quoteEl.textContent = t.quote;
+        bodyEl.textContent = t.body;
+        authorEl.textContent = t.author;
+
+        quoteEl.classList.remove("opacity-0");
+        bodyEl.classList.remove("opacity-0");
+        authorEl.classList.remove("opacity-0");
+      }, 140);
+    };
+
+    // transición suave
+    quoteEl.classList.add("transition-opacity", "duration-300");
+    bodyEl.classList.add("transition-opacity", "duration-300");
+    authorEl.classList.add("transition-opacity", "duration-300");
+
+    const prev = () => {
+      i = (i - 1 + testimonials.length) % testimonials.length;
+      render(i);
+    };
+
+    const next = () => {
+      i = (i + 1) % testimonials.length;
+      render(i);
+    };
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    // teclado
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    });
+
+    // autoplay opcional (pausa en hover)
+    const startAuto = () => {
+      if (!autoplay) return;
+      stopAuto();
+      timer = setInterval(next, autoplayMs);
+    };
+
+    const stopAuto = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+
+    const section = document.getElementById("testimonios");
+    section?.addEventListener("mouseenter", stopAuto);
+    section?.addEventListener("mouseleave", startAuto);
+
+    startAuto();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTestimonials);
+  } else {
+    initTestimonials();
+  }
+</script>

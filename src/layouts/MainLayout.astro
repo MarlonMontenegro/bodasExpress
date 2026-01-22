@@ -1,0 +1,62 @@
+---                            
+import '../styles/global.css'  
+import '../styles/global.css' 
+import Navbar from '../components/global/Navbar.astro' 
+import DiscountBanner from "../components/global/DiscountBanner.astro";
+import Footer from "../components/global/Footer.astro";
+
+
+ ---    
+
+<!doctype html>
+<html lang="es-SV">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Bodas Civiles en El Salvador | Paquete Express desde $225</title>
+
+  <meta
+    name="description"
+    content="Bodas civiles en El Salvador con Paquete Express desde $225. Incluye abogado, local decorado y asesoría gratuita. Atención inmediata por WhatsApp."
+  />
+
+  <link rel="canonical" href="https://bodasexpresssv.com/" />
+
+  <meta name="geo.region" content="SV" />
+  <meta name="geo.placename" content="El Salvador" />
+
+  <meta property="og:title" content="Bodas Civiles en El Salvador | Paquete Express $225" />
+  <meta property="og:description" content="Boda civil con abogado, local decorado y asesoría gratuita. Reserva tu fecha hoy mismo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bodasexpresssv.com/" />
+  <meta property="og:image" content="https://bodasexpresssv.com/og-bodas-express.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bodas Civiles en El Salvador | Paquete Express $225" />
+  <meta name="twitter:description" content="Todo incluido para tu boda civil. Atención inmediata." />
+  <meta name="twitter:image" content="https://bodasexpresssv.com/og-bodas-express.png" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta name="generator" content={Astro.generator} />
+</head>
+	<body>
+		<DiscountBanner
+  mes="febrero"
+  porcentaje={10}
+  tipoBoda="express"
+/>
+		<Navbar />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

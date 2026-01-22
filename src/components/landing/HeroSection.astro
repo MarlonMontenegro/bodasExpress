@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+
+import imgLeft from "../../assets/hero-left.png";
+import imgCenter from "../../assets/hero-center.png";
+import imgRight from "../../assets/hero-right.png";
+
+const whatsappNumber = "77903656";
+const whatsappMsg = encodeURIComponent("Hola, Quiero Cotizar una Boda");
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
+---
+
+<section id="inicio" class="relative w-full">
+  {/* full-bleed */}
+  <div class="relative w-full px-4 md:px-8 pt-6">
+    {/* “tarjeta” grande */}
+    <div class="relative mx-auto w-full max-w-[1400px] overflow-hidden rounded-[40px] ring-1 ring-black/5 shadow-xl">
+
+      {/* grid 3 imágenes + altura grande */}
+      <div class="grid grid-cols-1 md:grid-cols-3">
+        <div class="relative h-[240px] md:h-[78vh] md:min-h-[560px]">
+          <Image src={imgLeft} alt="Boda civil" class="h-full w-full object-cover" format="webp" />
+          <div class="absolute inset-0 bg-black/10"></div>
+        </div>
+
+        <div class="relative h-[240px] md:h-[78vh] md:min-h-[560px]">
+          <Image src={imgCenter} alt="Bodas Express" class="h-full w-full object-cover" format="webp" loading="eager" fetchpriority="high" />
+          <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/45"></div>
+        </div>
+
+        <div class="relative h-[240px] md:h-[78vh] md:min-h-[560px]">
+          <Image src={imgRight} alt="Firma de acta" class="h-full w-full object-cover" format="webp" />
+          <div class="absolute inset-0 bg-black/10"></div>
+        </div>
+      </div>
+
+      {/* texto encima */}
+      <div class="absolute inset-0 flex items-center justify-center px-6">
+        <div class="max-w-3xl text-center text-white">
+          <p class="tracking-[0.28em] text-xs md:text-sm uppercase text-white/90">
+            Bienvenidos a Bodas Express
+          </p>
+
+          <h1 class="mt-4 font-serif text-4xl md:text-7xl leading-[1.02]">
+            Momentos hermosos,
+            <br /> recuerdos para siempre
+          </h1>
+
+          <p class="mt-4 text-sm md:text-lg text-white/85">
+            Ceremonias de boda civil listas: local decorado, abogado incluido y atención rápida.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center justify-center gap-2 rounded-full
+                     bg-[#25D366] px-7 py-3.5 text-sm md:text-base font-semibold text-white
+                     shadow-lg shadow-black/25 ring-1 ring-black/10
+                     hover:brightness-95 active:scale-[0.99] transition"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="h-5 w-5">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1" />
+              </svg>
+              Reserva por WhatsApp <span class="ml-1">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+

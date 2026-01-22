@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets";
+
+import imgLeft from "../../assets/novia_familia.png";
+import imgRightTop from "../../assets/foto_novios.png";
+import imgRightSmall from "../../assets/novia.png";
+
+const eyebrow = "Celebrando historias de amor";
+const title = "Hacemos realidad tu día especial, sin estrés y con estilo";
+const body = `
+En BodasExpress sabemos que cada pareja tiene su propia historia. 
+Por eso nos encargamos de cada detalle de tu ceremonia civil: desde el local decorado hasta la coordinación del evento, para que solo tengas que disfrutar del momento con tus seres queridos. 
+Creamos experiencias memorables, rápidas y elegantes, diseñadas para que tu boda civil sea única y perfecta, tal como siempre la soñaste.
+`;
+const callToAction = "Déjanos ayudarte a vivir un día inolvidable, lleno de amor y momentos felices.";
+
+
+
+---
+<section class="py-16 md:py-24">
+  {/* mismo wrapper que tu hero */}
+  <div class="w-full px-4 md:px-8">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+        {/* Imagen izquierda */}
+        <div class="lg:col-span-3">
+          <div class="overflow-hidden rounded-[28px]">
+            <Image
+              src={imgLeft}
+              alt="Detalle de boda civil"
+              class="w-full h-[420px] md:h-[520px] object-cover"
+              format="webp"
+              loading="lazy"
+              widths={[480, 768, 1024]}
+              sizes="(max-width: 1024px) 100vw, 25vw"
+            />
+          </div>
+        </div>
+
+        {/* Texto centro */}
+        <div class="lg:col-span-6 text-center lg:text-center">
+          <p class="text-[10px] md:text-[11px] tracking-[0.32em] uppercase text-slate-500">
+            {eyebrow}
+          </p>
+
+          <h2 class="mt-5 font-serif text-3xl md:text-5xl leading-[1.08] text-slate-900">
+            {title}
+          </h2>
+
+          <p class="mx-auto mt-6 max-w-2xl text-sm md:text-base leading-relaxed text-slate-600">
+            {body}
+          </p>
+        </div>
+
+        {/* Collage derecha */}
+        <div class="lg:col-span-3">
+          <div class="relative w-full max-w-sm lg:max-w-none mx-auto">
+            {/* Top right big */}
+            <div class="overflow-hidden rounded-[28px]">
+              <Image
+                src={imgRightTop}
+                alt="Pareja en ceremonia"
+                class="w-full h-[340px] md:h-[420px] object-cover"
+                format="webp"
+                loading="lazy"
+                widths={[480, 768, 1024]}
+                sizes="(max-width: 1024px) 100vw, 25vw"
+              />
+            </div>
+
+            {/* Small overlay */}
+            <div class="absolute -left-8 -bottom-10 w-[190px] md:w-[220px] overflow-hidden rounded-[24px]">
+              <Image
+                src={imgRightSmall}
+                alt="Momento especial"
+                class="w-full h-[160px] md:h-[180px] object-cover"
+                format="webp"
+                loading="lazy"
+                widths={[320, 480, 640]}
+                sizes="220px"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

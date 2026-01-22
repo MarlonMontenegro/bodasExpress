@@ -1,0 +1,119 @@
+---
+import { Image } from "astro:assets";
+
+import imgMain from "../../assets/boda.png";    
+import imgSmall from "../../assets/foto_novios.png";   
+
+const eyebrow = "Paquetes y servicios";
+const title = "Bodas civiles listas\nen un local decorado";
+const description =
+  "Te acompañamos en cada detalle de tu boda civil: ceremonia, decoración, coordinación y atención rápida. Cotizá en minutos por WhatsApp.";
+
+const packages = [
+  {
+    name: "Express",
+    price: "$250",
+    items: [
+      "Ceremonia civil para 10 personas (novios y testigos incluidos)",
+      "Local decorado",
+      "Abogado para la ceremonia",
+      "Coordinación del evento",
+    ],
+  },
+  {
+    name: "Plus",
+    price: "$350",
+    items: [
+      "Ceremonia civil para 10 personas (novios y testigos incluidos)",
+      "Local decorado",
+      "Abogado para la ceremonia",
+      "Coordinación del evento",
+      "Bocaditos y bebidas incluidas",
+    ],
+  },
+];
+---
+
+<section id="servicios" class="py-16 md:py-24">
+  {/* MISMO wrapper que el hero */}
+  <div class="w-full px-4 md:px-8">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        {/* IZQUIERDA */}
+        <div>
+          <p class="text-[10px] md:text-[11px] tracking-[0.32em] uppercase text-slate-500">
+            {eyebrow}
+          </p>
+
+          <h2 class="mt-4 font-serif text-4xl md:text-6xl leading-[1.02] text-slate-900">
+            {title.split("\n").map((line, i) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
+          </h2>
+
+          <p class="mt-5 max-w-xl text-slate-600 leading-relaxed">
+            {description}
+          </p>
+
+          <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+            {packages.map((pkg) => (
+              <div>
+                <div class="flex items-baseline justify-between">
+                  <h3 class="font-serif text-xl text-slate-900">
+                    {pkg.name}
+                  </h3>
+                  <span class="text-slate-500 font-medium">
+                    {pkg.price}
+                  </span>
+                </div>
+
+                <ul class="mt-4 space-y-2 text-sm text-slate-600">
+                  {pkg.items.map((item) => (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-12 h-px w-28 bg-slate-200"></div>
+        </div>
+
+        {/* DERECHA collage */}
+        <div class="relative">
+          <div class="relative mx-auto w-full max-w-xl">
+            <div class="relative overflow-hidden rounded-[28px]">
+              <Image
+                src={imgMain}
+                alt="Ceremonia de boda civil en local decorado"
+                class="h-[420px] md:h-[520px] w-full object-cover"
+                format="webp"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/5"></div>
+            </div>
+
+            <div class="absolute -bottom-10 -left-6 md:-left-10 w-[220px] md:w-[260px] overflow-hidden rounded-[24px]">
+              <Image
+                src={imgSmall}
+                alt="Firma y detalles de boda"
+                class="h-[160px] md:h-[190px] w-full object-cover"
+                format="webp"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/5"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

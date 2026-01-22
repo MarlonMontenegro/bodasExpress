@@ -1,0 +1,17 @@
+---
+const {
+  mes = "este mes",
+  porcentaje = 10,
+  tipoBoda = "civiles"
+} = Astro.props;
+---
+
+<div class="w-full bg-pink-600 text-white">
+  <div class="mx-auto max-w-[1400px] px-4 py-3 text-center">
+    <p class="text-sm md:text-base font-semibold tracking-wide">
+      ✨ Este <span class="font-bold capitalize">{mes}</span> 
+      descuento del <span class="font-bold">{porcentaje}%</span> 
+      en nuestras bodas <span class="font-bold capitalize">{tipoBoda}</span>
+    </p>
+  </div>
+</div>
