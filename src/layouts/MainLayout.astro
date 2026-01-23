@@ -11,6 +11,9 @@ import Footer from "../components/global/Footer.astro";
 <!doctype html>
 <html lang="es-SV">
 <head>
+
+
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -49,6 +52,16 @@ import Footer from "../components/global/Footer.astro";
 
   <meta name="theme-color" content="#d81b60" />
   <meta name="generator" content={Astro.generator} />
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XX6MRG9W0Q"></script>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XX6MRG9W0Q', { anonymize_ip: true });
+</script>
 </head>
 
 	<body>
